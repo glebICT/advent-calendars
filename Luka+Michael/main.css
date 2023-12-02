@@ -1,0 +1,9 @@
+body {
+    background: radial-gradient(#e66465, #9198e5);
+    font-family: monospace;
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 900;
+    height: 100vh;
+    margin: 0;
+}
