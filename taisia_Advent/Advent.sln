@@ -1,0 +1,21 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E2FAE493-59FA-4360-A8E3-B16D3DFE748C}"
+	ProjectSection(SolutionItems) = preProject
+		advent.html = advent.html
+		first.jpg = first.jpg
+		gingerhouse.jpg = gingerhouse.jpg
+		lastofsnowmen.jpg = lastofsnowmen.jpg
+		Ok.jpg = Ok.jpg
+		origamiofhat.jpg = origamiofhat.jpg
+		pngtree-christmas-gradient-advent-calendar-png-image_2485572.jpg = pngtree-christmas-gradient-advent-calendar-png-image_2485572.jpg
+		santas face.jpg = santas face.jpg
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+	EndGlobalSection
+EndGlobal
