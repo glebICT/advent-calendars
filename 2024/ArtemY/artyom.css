@@ -1,0 +1,36 @@
+body{
+    background: ivory;
+    font-family: 'Courier New', Courier, monospace;
+}
+h2{
+    color: white
+}
+ul{
+    list-style-type:upper-roman;
+    li{
+        color: white
+    }
+}
+ol{
+    list-style-type:armenian;
+}
+li{
+    color: white
+}
+
+dt{
+    color: white
+}
+dd{
+    color: darkred
+}
+a{
+    color: darkred
+}
+table{
+    td{
+        img{
+            width: 200px;
+        }
+    }
+}

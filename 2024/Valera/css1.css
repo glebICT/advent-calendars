@@ -1,0 +1,17 @@
+body{
+    display: flex;
+flex-direction: column;
+}
+h1{
+    text-align: center;
+}
+table{
+    display: flex;
+background: beige;
+    margin: auto;
+    width: 50%;
+    td{
+        padding: 0 1rem;
+        font-size: 3rem;
+    }
+}

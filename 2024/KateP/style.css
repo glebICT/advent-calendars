@@ -1,0 +1,224 @@
+body{
+    background: rgb(75, 240, 89);
+    table{
+        border: 1px solid lightblue;
+        .card1{
+            display: block;
+            background-image: url('Calendar-Doors_1.png')  ;
+            width: 100px;
+            height: 100px;
+            color: white;
+        }
+        .card1{
+            display: block;
+            background-image: url('Calendar-Doors_1.png')  ;
+            width: 100px;
+            height: 100px;
+            color: white;
+        }
+        .card2{
+            display: block; 
+            background-image: url('advent-calendar-2-december-png\ \(1\).webp');
+            width: 100px;
+            height: 100px;
+            color: white;
+
+
+        }
+        .card3{
+        display: block;
+        background-image: url(02cb8332ea7d52c9ec36fcfc8e8dd279.png);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+
+        }
+        .card4{
+            display: block;
+            background-image: url(pngtree-christmas-advent-calenda.png);
+            width: 100px;
+            height: 100px;
+            color: white;
+
+
+        }
+        .card5{
+            display: block;
+            background-image: url(download\ \(1\).avif);
+            width: 100px;
+            height: 100px;
+            color: white;
+
+        }
+       .card6{
+        display: block;
+        background-image: url(advent\ calendar\ 6.png);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+       }
+       .card7{
+        display: block;
+        background-image: url(christmas-advent-calendar-with-h.avif);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+
+       }
+       .card8{
+        display: block;
+        background-image: url(advent-calendar-8-december-png\ \(1\).webp);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card9{
+        display: block;
+        background-image: url(Screenshot\ 2021-12-08\ at\ 16.02.08\ \(1\).png);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card10{
+        display: block;
+        background-image: url(Screenshot\ 2021-12-08\ at\ 20.32.52\ \(1\).png);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card11{
+        display: block;
+        background-image: url(NBB-11217-Website-Advent-Calendar-2022-AW-11\ \(1\).webp);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card12{
+        display: block;
+        background-image: url(advent\ calendar\ 12\ \(2\)\ \(1\).png);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card13{
+        display: block;
+        background-image: url(advent\ calendar-13\ \(1\).webp);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card14{
+        display: block;
+        background-image: url(calendar\ 14\ \(1\).png);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card15{
+        display: block;
+        background-image: url(advent-calendar-15-december-png\ \(2\).webp);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card16{
+        display: block;
+        background-image: url(calendarv16\ \(1\).webp);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card17{
+        display: block;
+        background-image: url(calendar\ 17\ \(1\).webp);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card18{
+        display: block;
+        background-image: url(calendar\ 18\ \(1\).png);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card19{
+        display: block;
+        background-image: url(calendar\ 19\ \(1\).png);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card20{
+        display: block;
+        background-image: url(calendar\ 20\ \(1\).png);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card21{
+        display: block;
+        background-image: url(calendar21\ \(1\).png);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card22{
+        display: block;
+        background-image: url(calendar\ 22\ \(1\).webp);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card23{
+        display: block;
+        background-image: url(calendar\ 23\ \(1\).png);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card24{
+        display: block;
+        background-image: url(calendar\ 14\ \(1\).webp);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card25{
+        display: block;
+        background-image: url(calendar\ 25\ \(1\).webp);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+    .card26{
+        display: block;
+        background-image: url(calendar\ 26\ \(1\).jpg);
+        width: 100px;
+        height: 100px;
+        color: white;
+
+    }
+}
+}

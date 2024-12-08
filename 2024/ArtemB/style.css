@@ -1,0 +1,23 @@
+body{
+    background:rgb(228, 14, 14);
+    color:rgb(0, 0, 0);
+    font-family: 'Courier New', Courier, monospace;
+    ul{
+        list-style-type: decimal-leading-zero;
+    }
+  }
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #00ff62;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #0d25ff;
+  }

@@ -1,0 +1,14 @@
+body{
+    background: lightgrey;
+    font-family: 'Courier New', Courier, monospace;
+}
+h2{
+    color: black;
+    font-family: 'Courier New', Courier, monospace
+}
+img{
+    width: 120px;
+}
+a{
+    color: black
+}
