@@ -1,0 +1,226 @@
+<!--
+Advent Calendar - single-file HTML/CSS/JS
+How to use:
+1. Save this file as `advent-calendar.html` in Visual Studio Code.
+2. Open it with Live Server (recommended) or open the file in your browser.
+3. Each day (Dec 1..24) the corresponding door becomes clickable. You can also toggle "Preview mode" to unlock all doors for testing.
+4. Customize messages/images in the `doors` array inside the script section.
+
+Features:
+- Responsive 4x6 grid (desktop) / adjusts to smaller screens
+- Locks future days based on the user's local date
+- Smooth open animation and content modal
+- Keyboard accessibility (arrow navigation + Enter/Escape)
+- Optional preview/test mode toggle
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Advent Calendar</title>
+  <style>
+    :root{
+      --bg:#0b1020; --card:#0f1724; --accent:#d97706; --muted:#9aa4b2; --glass: rgba(255,255,255,0.03);
+      --door-size: calc((min(100vw,900px) - 48px) / 6);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: linear-gradient(180deg,var(--bg),#041025 60%); color:#eef2ff; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px}
+    .container{width:100%;max-width:1100px}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    h1{margin:0;font-size:clamp(18px,3vw,28px)}
+    .controls{display:flex;gap:10px;align-items:center}
+    .btn{background:var(--glass);border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer;font-weight:600}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#ffb86b);color:#071023;border:none}
+    .grid{display:grid;gap:12px;grid-template-columns:repeat(6,1fr)}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(4,1fr)}}
+    @media(max-width:520px){.grid{grid-template-columns:repeat(3,1fr)}}
+    .door{
+      position:relative;padding-top:100%;border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 6px 18px rgba(2,6,23,0.6);cursor:pointer;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.03);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .door:hover{transform:translateY(-6px)}
+    .door.locked{filter:grayscale(.2) brightness(.75);cursor:not-allowed}
+    .label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.6)}
+    .mini{font-size:12px;color:var(--muted);position:absolute;left:8px;top:8px}
+    /* little ribbon */
+    .ribbon{position:absolute;right:8px;bottom:8px;background:linear-gradient(90deg,#fff9,#ffd7b0);padding:6px 8px;border-radius:6px;font-weight:700;color:#062230;font-size:12px}
+
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.8));display:flex;align-items:center;justify-content:center;z-index:60;padding:20px}
+    .modal{background:linear-gradient(180deg,#071126,#0d2133);border-radius:12px;padding:18px;max-width:720px;width:100%;box-shadow:0 10px 40px rgba(2,6,23,0.7);border:1px solid rgba(255,255,255,0.04)}
+    .modal h2{margin:0 0 8px 0}
+    .modal .content{font-size:15px;color:var(--muted);line-height:1.45}
+    .close{margin-top:14px;display:flex;justify-content:flex-end}
+
+    footer{margin-top:16px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* open animation */
+    .door-open .label{transform:rotateX(90deg);opacity:0}
+    .door-open .card-inner{transform:none;opacity:1}
+    .card-inner{position:absolute;inset:0;padding:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;transform:translateY(14px) scale(.98);transition:all .28s cubic-bezier(.2,.9,.2,1)}
+    .card-inner img{max-width:100%;border-radius:8px;box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+
+    /* focus outline */
+    .door:focus{outline:3px solid rgba(217,119,6,0.18);outline-offset:2px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Advent Calendar — Open the door for each day of December 🎄</h1>
+      <div class="controls">
+        <button id="previewToggle" class="btn">Preview mode: off</button>
+        <button id="resetBtn" class="btn">Reset opened</button>
+      </div>
+    </header>
+
+    <main>
+      <div id="grid" class="grid" role="list"></div>
+    </main>
+
+    <footer>Tip: open with Live Server in VS Code for best experience. Use arrow keys to navigate, Enter to open, Esc to close.</footer>
+  </div>
+
+  <!-- modal -->
+  <div id="backdrop" class="modal-backdrop" style="display:none">
+    <div class="modal" role="dialog" aria-modal="true">
+      <h2 id="modalTitle">Day</h2>
+      <div id="modalContent" class="content"></div>
+      <div class="close"><button id="closeModal" class="btn">Close</button></div>
+    </div>
+  </div>
+
+  <script>
+    // Customize the 24 doors here. Each entry can have: title, content (HTML), image (optional).
+    const doors = Array.from({length:24}).map((_,i)=>({
+      day: i+1,
+      title: `Day ${i+1}`,
+      // Example content - replace with your own text, links, images, or emoji
+      content: `<p>Surprise for day ${i+1}! 🎁</p><p> cheese .</p>`
+    }))
+
+    const grid = document.getElementById('grid')
+    const previewToggle = document.getElementById('previewToggle')
+    const resetBtn = document.getElementById('resetBtn')
+    const backdrop = document.getElementById('backdrop')
+    const modalTitle = document.getElementById('modalTitle')
+    const modalContent = document.getElementById('modalContent')
+    const closeModal = document.getElementById('closeModal')
+
+    // load state
+    const storageKey = 'advent-opened'
+    let opened = JSON.parse(localStorage.getItem(storageKey) || '[]')
+    let preview = false
+
+    function isUnlocked(day){
+      if(preview) return true
+      const now = new Date()
+      // Only unlock based on month/day; if it's December and day >= 1 and <=24
+      const month = now.getMonth() // 0-based: 11 === December
+      const date = now.getDate()
+      if(month === 11){
+        return date >= day
+      }
+      // allow unlocking in November/December for dev convenience? keep locked otherwise
+      return false
+    }
+
+    function render(){
+      grid.innerHTML = ''
+      doors.forEach(d => {
+        const card = document.createElement('button')
+        card.className = 'door'
+        card.setAttribute('role','listitem')
+        card.setAttribute('data-day', d.day)
+        card.setAttribute('aria-label', `Open day ${d.day}`)
+        card.tabIndex = 0
+
+        const label = document.createElement('div')
+        label.className = 'label'
+        label.textContent = d.day
+
+        const mini = document.createElement('div')
+        mini.className = 'mini'
+        mini.textContent = (isUnlocked(d.day) ? 'available' : 'locked')
+
+        const inner = document.createElement('div')
+        inner.className = 'card-inner'
+        inner.innerHTML = `<div style="text-align:center"><strong>${d.title}</strong><div style="height:8px"></div>${d.content}</div>`
+
+        card.appendChild(label)
+        card.appendChild(mini)
+        card.appendChild(inner)
+
+        const locked = !isUnlocked(d.day)
+        if(locked) card.classList.add('locked')
+        if(opened.includes(d.day)) card.classList.add('door-open')
+
+        card.addEventListener('click', (ev)=>{
+          ev.preventDefault()
+          if(locked){
+            // small shake feedback
+            card.animate([{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:220})
+            return
+          }
+          openDoor(d)
+        })
+
+        // keyboard open
+        card.addEventListener('keydown', (e)=>{
+          if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); card.click() }
+        })
+
+        grid.appendChild(card)
+      })
+    }
+
+    function openDoor(d){
+      modalTitle.textContent = d.title
+      modalContent.innerHTML = d.content
+      backdrop.style.display = 'flex'
+      // mark opened
+      if(!opened.includes(d.day)){ opened.push(d.day); localStorage.setItem(storageKey, JSON.stringify(opened)) }
+      // visually open the door in the grid
+      const btn = grid.querySelector(`[data-day='${d.day}']`)
+      if(btn) btn.classList.add('door-open')
+    }
+
+    function close(){ backdrop.style.display = 'none' }
+
+    closeModal.addEventListener('click', close)
+    backdrop.addEventListener('click', (e)=>{ if(e.target === backdrop) close() })
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') close()
+      // arrow key navigation inside grid
+      const focus = document.activeElement
+      if(focus && focus.classList && focus.classList.contains('door')){
+        const idx = Array.from(grid.children).indexOf(focus)
+        if(e.key === 'ArrowRight'){ const next = grid.children[idx+1]; if(next) next.focus() }
+        if(e.key === 'ArrowLeft'){ const prev = grid.children[idx-1]; if(prev) prev.focus() }
+        if(e.key === 'ArrowDown'){ const n = idx + Math.min(6, grid.children.length); if(grid.children[n]) grid.children[n].focus() }
+        if(e.key === 'ArrowUp'){ const n = idx - Math.min(6, grid.children.length); if(grid.children[n]) grid.children[n].focus() }
+      }
+    })
+
+    previewToggle.addEventListener('click', ()=>{
+      preview = !preview
+      previewToggle.textContent = `Preview mode: ${preview ? 'on' : 'off'}`
+      render()
+    })
+
+    resetBtn.addEventListener('click', ()=>{
+      if(confirm('Clear opened state?')){ opened = []; localStorage.removeItem(storageKey); render() }
+    })
+
+    // initial render
+    render()
+
+    // Developer note: if you want to prefill custom content programmatically,
+    // replace entries in `doors` array above with your own HTML strings or images.
+    // Example:
+    // doors[0].content = '<img src="/path/to/img.jpg" alt="gift" style="max-width:100%"><p>First day!</p>'
+  </script>
+</body>
+</html>
