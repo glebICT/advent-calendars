@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Подарки — поздравления</title>
+<style>
+:root{--bg:#0f1724;--card:#0b1220;--accent:#e11d48}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#071029 0%,#0b1220 100%);font-family:Inter,Segoe UI,Roboto,Helvetica,Arial;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.wrap{max-width:1000px;width:100%;}
+h1{text-align:center;margin:0 0 18px;font-size:24px}
+
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:18px}
+.gift{background:linear-gradient(180deg,#111827 0%,#0b1220 100%);border-radius:12px;padding:18px;position:relative;overflow:hidden;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
+.gift:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,.5)}
+
+
+.box{height:120px;border-radius:8px;background:linear-gradient(180deg,#ef4444,#be123c);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;position:relative;color:#fff}
+.ribbon{position:absolute;left:50%;transform:translateX(-50%);top:12px;width:70%;height:18px;background:rgba(255,255,255,.12);border-radius:6px}
+
+
+.open .box{height:180px;background:linear-gradient(180deg,#10b981,#059669);}
+.message{display:none;padding:12px 8px 6px;font-size:15px;color:#061019}
+.open .message{display:block}
+
+
+.meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.btn{background:transparent;border:1px solid rgba(205,255,255,.12);padding:6px 8px;border-radius:8px;color:inherit;font-size:13px}
+
+
+/* confetti */
+.confetti-piece{position:absolute;left:50%;top:50%;width:8px;height:12px;opacity:0;transform-origin:center;pointer-events:none}
+
+
+@media (max-width:420px){.box{font-size:16px;height:110px}.open .box{height:150px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>socks</h1>
+<div class="grid" id="grid"></div>
+</div>
+
+
+<script>
+const messages = [
+'Happy Birthday! May every day bring you joy.',
+'Happy holidays! Wishing you warmth, comfort, and laughter.',
+'Congratulations! May your warmest dreams come true.',
+'Wishing you happiness and success in everything you do!',
+'Smiles, sunny days, and loyal friends to you.',
+'Love, health, and bright impressions.',
+'May this year be full of victories and discoveries.',
+'Creative ideas and inspiration every day.',
+'Strong health like a mountain, and peace of mind.',
+'May luck always walk by your side.',
+'Warm meetings, hot tea, and cozy evenings.',
+'May every new day bring you a reason to smile.'
+];
+
+
+const grid = document.getElementById('grid');
+
+
+messages.forEach((msg,i)=>{
+const el = document.createElement('div');
+el.className='gift';
+el.innerHTML = `
+<div class="box">Gift ${i+1}<div class="ribbon"></div></div>
+<div class="message">${msg}</div>
+<div class="meta">
+<button class="btn open-btn">Open</button>
+<button class="btn copy-btn">Copy</button>
+</div>`;
+
+
+grid.appendChild(el);
+
+
+const openBtn = el.querySelector('.open-btn');
+const copyBtn = el.querySelector('.copy-btn');
+
+
+openBtn.addEventListener('click', (ev)=>{
+ev.stopPropagation();
+toggleOpen(el, msg);
+});
+
+
+copyBtn.addEventListener('click',(ev)=>{
+ev.stopPropagation();
+navigator.clipboard?.writeText(msg).then(()=>{
+copyBtn.textContent='Copied!';
+setTimeout(()=>copyBtn.textContent='Copy',1200);
+}).catch(()=>{copyBtn.textContent='Error';setTimeout(()=>copyBtn.textContent='Copy',1200)});
+});
+
+
+// also open when whole card clicked
+el.addEventListener('click', ()=> toggleOpen(el, msg));
+});
+
+
+function toggleOpen(el, msg){
+const wasOpen = el.classList.contains('open');
+if(wasOpen){
+el.classList.remove('open');
+} else {
+el.classList.add('open');
+// confetti effect
+spawnConfetti(el);
+</html>
