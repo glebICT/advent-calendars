@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advent Calendar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'bold', serif;
+            background: linear-gradient(135deg, #1a0a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .day {
+            aspect-ratio: 1;
+            background: linear-gradient(145deg, #c41e3a, #8b0000);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .day:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(196,30,58,0.5);
+        }
+
+        .day:hover::before {
+            left: 100%;
+        }
+
+        .day-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+
+        .day-icon {
+            font-size: 1.5em;
+            margin-top: 5px;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .calendar {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .day-number {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .calendar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🎄 Advent Calendar 2025 🎄</h1>
+    <div class="calendar" id="calendar"></div>
+    <script>
+        const icons = ['🎁', '⭐', '🎅', '❄️', '🔔', '🕯️', '🎄', '⛄', '🦌', '🍬', 
+                      '🎀', '🌟', '🧦', '🎵', '🎄', '🏠', '🎪', '🍪', '☃️', '🎺',
+                      '🎻', '🌠', '👼', '🎊', '🎉'];
+
+        const files = [
+            'day_1.html', 'day_2.html', 'day_3.html', 'day_4.html', 'day_5.html',
+        'day_6.html', 'day_7.html', 'day_8.html', 'day_9.html', 'day_10.html',
+        'day_11.html', 'day_12.html', 'day_13.html', 'day_14.html', 'day_15.html',
+        'day_16.html', 'day_17.html', 'day_18.html', 'day_19.html', 'day_20.html',
+        'day_21.html', 'da_22.html', 'day_23.html', 'day_24.html', 'day_25.html'
+       ];
+
+        const calendar = document.getElementById('calendar');
+
+        for (let i = 1; i <= 25; i++) {
+            const day = document.createElement('div');
+            day.className = 'day';
+            day.innerHTML = `
+                <div class="day-number">${i}</div>
+                <div class="day-icon">${icons[i-1]}</div>
+            `;
+            day.onclick = () => {
+                window.location.href = files[i-1];
+            };
+            calendar.appendChild(day);
+        }
+    </script>
+</body>
+</html>
