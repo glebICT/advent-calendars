@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Neon Christmas Advent Calendar</title>
+
+    <style>
+        body {
+            background: #050505;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: white;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 12px;
+        }
+
+        caption {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            color: #ff2f92;
+            text-shadow:
+                0 0 5px #ff2f92,
+                0 0 10px #ff2f92,
+                0 0 20px #ff2f92;
+        }
+
+        td {
+            width: 90px;
+            height: 90px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 1.8em;
+            font-weight: bold;
+            border-radius: 12px;
+            background: #111;
+            color: #fff;
+            position: relative;
+
+            /* Neon glow */
+            box-shadow:
+                0 0 8px #00fff7,
+                0 0 16px #00fff7,
+                inset 0 0 10px #00fff7;
+
+            animation: flicker 2.5s infinite alternate;
+            cursor: pointer;
+        }
+
+        td:hover {
+            background: #1a1a1a;
+            box-shadow:
+                0 0 12px #ffeb3b,
+                0 0 25px #ffeb3b,
+                inset 0 0 12px #ffeb3b;
+            color: #ffeb3b;
+        }
+
+        @keyframes flicker {
+            0% {
+                box-shadow: 0 0 6px #00fff7, inset 0 0 8px #00fff7;
+            }
+
+            50% {
+                box-shadow: 0 0 14px #ff2f92, inset 0 0 10px #ff2f92;
+            }
+
+            100% {
+                box-shadow: 0 0 20px #00fff7, inset 0 0 14px #00fff7;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <table>
+        <caption>🎄 Neon Advent Calendar 🎄</caption>
+        <tr>
+            <td><a href="1.html">1</a></td>
+            <td><a href="2.html">2</a></td>
+            <td><a href="3.html">3</a></td>
+            <td><a href="4.html">4</a></td>
+            <td><a href="5.html">5</a></td>
+            <td><a href="6.html">6</a></td>
+        </tr>
+        <tr>
+            <td><a href="7.html">7</a></td>
+            <td><a href="8.html">8</a></td>
+            <td><a href="9.html">9</a></td>
+            <td><a href="10.html">10</a></td>
+            <td><a href="11.html">11</a></td>
+            <td><a href="12.html">12</a></td>
+        </tr>
+        <tr>
+            <td><a href="13.html">13</a></td>
+            <td><a href="14.html">14</a></td>
+            <td><a href="15.html">15</a></td>
+            <td><a href="16.html">16</a></td>
+            <td><a href="17.html">17</a></td>
+            <td><a href="18.html">18</a></td>
+        </tr>
+        <tr>
+            <td><a href="19.html">19</a></td>
+            <td><a href="20.html">20</a></td>
+            <td><a href="21.html">21</a></td>
+            <td><a href="22.html">22</a></td>
+            <td><a href="23.html">23</a></td>
+            <td><a href="24.html">24</a></td>
+            <td><a href="25.html">25</a></td>
+        </tr>   
+        
+        
+    </table>
+</body>
+</html>

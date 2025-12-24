@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Neon Christmas Advent Calendar</title>
+
+<style>
+    body {
+        background: #050505;
+        font-family: 'Arial', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        color: white;
+    }
+
+    table {
+        border-collapse: separate;
+        border-spacing: 12px;
+    }
+
+    caption {
+        font-size: 2.2em;
+        margin-bottom: 20px;
+        color: #ff2f92;
+        text-shadow:
+            0 0 5px #ff2f92,
+            0 0 10px #ff2f92,
+            0 0 20px #ff2f92;
+    }
+
+    td {
+        width: 90px;
+        height: 90px;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 1.8em;
+        font-weight: bold;
+        border-radius: 12px;
+        background: #111;
+        color: #fff;
+        position: relative;
+
+        /* Neon glow */
+        box-shadow:
+            0 0 8px #00fff7,
+            0 0 16px #00fff7,
+            inset 0 0 10px #00fff7;
+
+        animation: flicker 2.5s infinite alternate;
+        cursor: pointer;
+    }
+
+    td:hover {
+        background: #1a1a1a;
+        box-shadow:
+            0 0 12px #ffeb3b,
+            0 0 25px #ffeb3b,
+            inset 0 0 12px #ffeb3b;
+        color: #ffeb3b;
+    }
+
+    @keyframes flicker {
+        0%   { box-shadow: 0 0 6px #00fff7, inset 0 0 8px #00fff7; }
+        50%  { box-shadow: 0 0 14px #ff2f92, inset 0 0 10px #ff2f92; }
+        100% { box-shadow: 0 0 20px #00fff7, inset 0 0 14px #00fff7; }
+    }
+</style>
+</head>
+
+<body>
+
+<table>
+    <caption>🎄 Neon Advent Calendar 🎄</caption>
+    <tr>
+        <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+    </tr>
+    <tr>
+        <td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
+    </tr>
+    <tr>
+        <td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td>
+    </tr>
+    <tr>
+        <td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td>
+    </tr>
+</table>
+
+</body>
+</html>
