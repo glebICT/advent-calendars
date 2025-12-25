@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Advent Calendar</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    text-align: center;
+  }
+
+  table {
+    margin: 20px auto;
+    border-collapse: collapse;
+  }
+
+  td {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #444;
+    font-size: 24px;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 80px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
+
+  a:hover {
+    background: #ffdddd;
+  }
+
+  .content {
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 10px;
+  }
+
+  img {
+    max-width: 300px;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>🎄 Advent Calendar 🎄</h1>
+
+<table>
+  <tr>
+    <td><a href="?day=1">1</a></td>
+    <td><a href="?day=2">2</a></td>
+    <td><a href="?day=3">3</a></td>
+    <td><a href="?day=4">4</a></td>
+    <td><a href="?day=5">5</a></td>
+    <td><a href="?day=6">6</a></td>
+  </tr>
+  <tr>
+    <td><a href="?day=7">7</a></td>
+    <td><a href="?day=8">8</a></td>
+    <td><a href="?day=9">9</a></td>
+    <td><a href="?day=10">10</a></td>
+    <td><a href="?day=11">11</a></td>
+    <td><a href="?day=12">12</a></td>
+  </tr>
+  <tr>
+    <td><a href="?day=13">13</a></td>
+    <td><a href="?day=14">14</a></td>
+    <td><a href="?day=15">15</a></td>
+    <td><a href="?day=16">16</a></td>
+    <td><a href="?day=17">17</a></td>
+    <td><a href="?day=18">18</a></td>
+  </tr>
+  <tr>
+    <td><a href="?day=19">19</a></td>
+    <td><a href="?day=20">20</a></td>
+    <td><a href="?day=21">21</a></td>
+    <td><a href="?day=22">22</a></td>
+    <td><a href="?day=23">23</a></td>
+    <td><a href="?day=24">24</a></td>
+  </tr>
+</table>
+
+<div class="content" id="content">
+  Click a day to open a picture 🎁
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const day = params.get("day");
+
+  const days = {
+    1: { text: "Welcome to Advent!", img: "https://picsum.photos/seed/christmas1/400" },
+    2: { text: "Cozy winter vibes", img: "https://picsum.photos/seed/christmas2/400" },
+    3: { text: "Holiday lights", img: "https://picsum.photos/seed/christmas3/400" },
+    4: { text: "Warm and cozy", img: "https://picsum.photos/seed/christmas4/400" },
+    5: { text: "Sweet treats", img: "https://picsum.photos/seed/christmas5/400" },
+    6: { text: "Snowy day", img: "https://picsum.photos/seed/christmas6/400" },
+    7: { text: "Festive fun", img: "https://picsum.photos/seed/christmas7/400" },
+    8: { text: "Holiday cheer", img: "https://picsum.photos/seed/christmas8/400" },
+    9: { text: "Christmas magic", img: "https://picsum.photos/seed/christmas9/400" },
+    10:{ text: "Smile today!", img: "https://picsum.photos/seed/christmas10/400" },
+    11:{ text: "Almost halfway", img: "https://picsum.photos/seed/christmas11/400" },
+    12:{ text: "Halfway to Christmas!", img: "https://picsum.photos/seed/christmas12/400" },
+    13:{ text: "Lucky day!", img: "https://picsum.photos/seed/christmas13/400" },
+    14:{ text: "Joyful moments", img: "https://picsum.photos/seed/christmas14/400" },
+    15:{ text: "Festive season", img: "https://picsum.photos/seed/christmas15/400" },
+    16:{ text: "Holiday spirit", img: "https://picsum.photos/seed/christmas16/400" },
+    17:{ text: "Winter wonder", img: "https://picsum.photos/seed/christmas17/400" },
+    18:{ text: "Almost there!", img: "https://picsum.photos/seed/christmas18/400" },
+    19:{ text: "So close!", img: "https://picsum.photos/seed/christmas19/400" },
+    20:{ text: "Holiday happiness", img: "https://picsum.photos/seed/christmas20/400" },
+    21:{ text: "Christmas is near!", img: "https://picsum.photos/seed/christmas21/400" },
+    22:{ text: "Warm wishes", img: "https://picsum.photos/seed/christmas22/400" },
+    23:{ text: "Almost Christmas!", img: "https://picsum.photos/seed/christmas23/400" },
+    24:{ text: "🎄 Merry Christmas Eve!", img: "https://picsum.photos/seed/christmas24/400" }
+  };
+
+  if (day && days[day]) {
+    document.getElementById("content").innerHTML = `
+      <h2>Day ${day}</h2>
+      <p>${days[day].text}</p>
+      <img src="${days[day].img}" alt="Advent Image">
+    `;
+  }
+</script>
+
+</body>
+</html>
