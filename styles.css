@@ -28,7 +28,6 @@ h1::after {
     border-radius: 2px;
 }
 
-/* Details and summary styles */
 details {
     margin-bottom: 20px;
     background-color: white;
@@ -163,7 +162,6 @@ ul li p {
     }
 }
 
-/* Loading text styling */
 #calendar-container p {
     text-align: center;
     font-size: 1.2rem;
