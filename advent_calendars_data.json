@@ -230,6 +230,16 @@
           "name": "Kolya",
           "path": "./2025/kolya/",
           "description": "Advent calendar"
+        },
+        {
+          "name": "Leon",
+          "path": "./2025/leon/",
+          "description": "Advent calendar"
+        },
+        {
+          "name": "Rostislav",
+          "path": "./2025/rostik/",
+          "description": "Advent calendar"
         }
       ]
     }

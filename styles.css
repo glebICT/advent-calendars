@@ -29,7 +29,7 @@ h1::after {
 }
 
 details {
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -38,11 +38,11 @@ details {
 }
 
 details:hover {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 6px 1rem rgba(0, 0, 0, 0.12);
 }
 
 summary {
-    padding: 18px 20px;
+    padding: 1rem;
     font-size: 1.4rem;
     font-weight: 600;
     background: linear-gradient(to right, #3498db, #2980b9);
@@ -63,16 +63,14 @@ summary::-webkit-details-marker {
     font-size: 1.2rem;
 }
 
-/* Content inside details */
 details > p {
-    margin: 15px 20px;
+    margin: 0.5rem;
     padding: 0;
     color: #555;
     font-style: italic;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
-/* List styles */
 ul {
     display: flex;
     padding: 0 20px 20px 20px;
@@ -85,7 +83,7 @@ ul {
 ul li {
     list-style: none;
     border: 1px solid #e0e0e0;
-    padding: 1.2rem;
+    padding: 1rem;
     margin: 0;
     background-color: #ffffff;
     border-radius: 8px;
@@ -123,7 +121,6 @@ ul li p {
     font-size: 0.95rem;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     body {
         padding: 10px;
@@ -164,7 +161,7 @@ ul li p {
 
 #calendar-container p {
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: #7f8c8d;
-    padding: 40px;
+    padding: 2rem;
 }
